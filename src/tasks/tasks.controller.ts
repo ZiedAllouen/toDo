@@ -9,37 +9,37 @@ export class TasksController {
     //add new task
     @Post()
     AddTask(){
-        return "Add new task";
+        return this.seeTasks.Add()
     }
     
     //get all tasks
     @Get()
     ShowTasks(){
-        return "Tasks";
+        return this.seeTasks.ShowAll()
     }
 
     //get one task
     @Get('/:id')
     showOneTask(@Param() {id}){
-        return `Task of today ${id}`
+        return this.seeTasks.ShowOne()
     }
 
     //update a task 
     @Put('/:id')
     UpdateTask(@Param() {id}){
-        return `the task with the id: ${id} is updated`
+        return this.seeTasks.Update()
     }
 
     //delete a task
     @Delete('/:id')
     DeleteTask(@Param(){id}){
-        return `the task with the id ${id} is now deleted`
+        return this.seeTasks.Delete()
     }
 
     //search a task
     @Post('/search')
     Search(@Query() {key}){
-        return key ;
+        return this.seeTasks.Search()
     }
 
 }
