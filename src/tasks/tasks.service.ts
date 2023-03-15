@@ -33,7 +33,12 @@ export class TasksService {
         return this.taskModel.remove({_id:id})
     }
     Search(key:string){
-      
-        return 'search page'
+        const keyword=key ? 
+        {$or:[
+            {title:{$regex:key,$options:'i'}},
+        ]
+
+        } :{}
+        return this.taskModel.find(keyword)
     }
 }
