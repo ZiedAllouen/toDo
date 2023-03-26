@@ -12,8 +12,8 @@ import { BadRequestException } from '@nestjs/common/exceptions';
 export class AuthService {
   constructor(
     @InjectModel(User.name)
-    private userModel: Model<User>,
-    private jwtService: JwtService,
+    private readonly userModel: Model<User>,
+    private readonly jwtService: JwtService,
   ) {}
 
   //signUp function
@@ -62,6 +62,7 @@ export class AuthService {
       id: user._id,
       name: user.name,
     });
-    return { token };
+
+    return  token ;
   }
 }
