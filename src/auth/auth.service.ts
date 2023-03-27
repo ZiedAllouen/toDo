@@ -43,7 +43,7 @@ export class AuthService {
   }
 
   //signIn function
-  async signIn(signInDTO: SignInDto): Promise<{}> {
+  async signIn(signInDTO: SignInDto): Promise<any> {
     const { email, password } = signInDTO;
 
     const user = await this.userModel.findOne({ email });

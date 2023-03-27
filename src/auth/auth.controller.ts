@@ -16,7 +16,7 @@ export class AuthController {
     return this.authService.signUp(signUpDTO);
   }
 
-  @Get('/signin')
+  @Post('/signin')
   async signIn(@Body() signInDTO: SignInDto,@Res({passthrough:true}) response:Response) {
     try {
       const token = await this.authService.signIn(signInDTO);
