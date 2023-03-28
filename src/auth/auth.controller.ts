@@ -20,7 +20,8 @@ export class AuthController {
   async signIn(@Body() signInDTO: SignInDto,@Res({passthrough:true}) response:Response) {
     try {
       const token = await this.authService.signIn(signInDTO);
-      response.cookie('jwt', token, { httpOnly: true });
+      response.cookie('Token', token, { httpOnly: true });
+      response.setHeader('authorization', `Bearer ${token}`);
       return { message: 'success' };
     } catch (error) {
       throw new UnauthorizedException(error.message);
@@ -30,7 +31,7 @@ export class AuthController {
   @Get('/user')
   async user(@Req() request: Request) {
     try {
-      const cookie = request.cookies['jwt'];
+      const cookie = request.cookies['Token'];
       const data = await this.jwtService.verifyAsync(cookie);
       return data;
     } catch (error) {
@@ -40,7 +41,7 @@ export class AuthController {
 
   @Post('/logout')
   async logout(@Res({ passthrough: true }) response: Response) {
-    response.clearCookie('jwt');
+    response.clearCookie('Token');
     return { message: 'success' };
   }
 
