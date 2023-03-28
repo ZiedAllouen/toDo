@@ -1,10 +1,11 @@
 import { TaskDto } from './../dto/tasks.dto';
-import { Controller, Post, Get, Put, Delete, Query } from '@nestjs/common';
+import { Controller, Post, Get, Put, Delete, Query, UseGuards } from '@nestjs/common';
 import {
   Body,
   Param,
 } from '@nestjs/common/decorators/http/route-params.decorator';
 import { TasksService } from './tasks.service';
+import { AuthGuard } from '@nestjs/passport';
 
 @Controller('Tasks')
 export class TasksController {
@@ -12,6 +13,7 @@ export class TasksController {
 
   //add new task
   @Post()
+  @UseGuards(AuthGuard())
   AddTask(@Body() body: TaskDto) {
     //assign the request recived on @Body to body
     return this.seeTasks.Add(body);
