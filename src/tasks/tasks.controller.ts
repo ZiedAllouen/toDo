@@ -13,7 +13,7 @@ export class TasksController {
 
   //add new task
   @Post()
-  @UseGuards(AuthGuard())
+  // @UseGuards(AuthGuard())
   AddTask(@Body() body: TaskDto) {
     //assign the request recived on @Body to body
     return this.seeTasks.Add(body);

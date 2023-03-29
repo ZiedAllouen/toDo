@@ -18,14 +18,14 @@ export class AuthController {
 
   @Post('/signin')
   async signIn(@Body() signInDTO: SignInDto,@Res({passthrough:true}) response:Response) {
-    try {
+    // try {
       const token = await this.authService.signIn(signInDTO);
       response.cookie('Token', token, { httpOnly: true });
       response.setHeader('authorization', `Bearer ${token}`);
       return { message: 'success' };
-    } catch (error) {
-      throw new UnauthorizedException(error.message);
-    }
+    // } catch (error) {
+    //   throw new UnauthorizedException(error.message);
+    // }
   }
 
   @Get('/user')

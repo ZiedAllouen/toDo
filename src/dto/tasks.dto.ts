@@ -2,9 +2,9 @@ import { IsNotEmpty } from "class-validator";
 
 export class TaskDto{
 
-@IsNotEmpty()
+@IsNotEmpty( { message:` Please provide a value for the Title field !   ` })
 title:string;
 
-@IsNotEmpty()
+@IsNotEmpty({ message: "Please provide a value for the Description field !" })
 description:string;
 }
